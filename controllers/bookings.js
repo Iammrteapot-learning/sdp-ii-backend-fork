@@ -16,14 +16,14 @@ exports.getBookings = async (req, res, next) => {
         restaurant: restaurantId,
       }).populate({
         path: "restaurant",
-        select: "name address tel",
+        select: "name address tel foodtype province postalcode picture",
       });
     } else {
       query = Booking.find({
         user: req.user.id,
       }).populate({
         path: "restaurant",
-        select: "name address tel",
+        select: "name address tel foodtype province postalcode picture",
       });
     }
   } else {
@@ -31,7 +31,7 @@ exports.getBookings = async (req, res, next) => {
       query = Booking.find({ restaurant: restaurantId })
         .populate({
           path: "restaurant",
-          select: "name address tel",
+          select: "name address tel foodtype province postalcode picture",
         })
         .populate({
           path: "user",
@@ -41,7 +41,7 @@ exports.getBookings = async (req, res, next) => {
       query = Booking.find()
         .populate({
           path: "restaurant",
-          select: "name address tel",
+          select: "name address tel foodtype province postalcode picture",
         })
         .populate({
           path: "user",
@@ -73,7 +73,7 @@ exports.getBooking = async (req, res, next) => {
     booking = await Booking.findById(req.params.id)
       .populate({
         path: "restaurant",
-        select: "name address tel",
+        select: "name address tel foodtype province postalcode picture",
       })
       .populate({
         path: "user",
