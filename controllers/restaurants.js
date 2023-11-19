@@ -83,10 +83,14 @@ exports.createRestaurant = async (req, res, next) => {
 //@access   Private
 exports.updateRestaurant = async (req, res, next) => {
   try {
-    const restaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const restaurant = await Restaurant.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    console.log(restaurant);
     if (!restaurant) {
       res.status(400).json({ success: false });
     }
