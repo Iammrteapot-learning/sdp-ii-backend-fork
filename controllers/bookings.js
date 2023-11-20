@@ -14,17 +14,27 @@ exports.getBookings = async (req, res, next) => {
       query = Booking.find({
         user: req.user.id,
         restaurant: restaurantId,
-      }).populate({
-        path: "restaurant",
-        select: "name address tel foodtype province postalcode picture",
-      });
+      })
+        .populate({
+          path: "restaurant",
+          select: "name address tel foodtype province postalcode picture",
+        })
+        .populate({
+          path: "user",
+          select: "name email tel",
+        });
     } else {
       query = Booking.find({
         user: req.user.id,
-      }).populate({
-        path: "restaurant",
-        select: "name address tel foodtype province postalcode picture",
-      });
+      })
+        .populate({
+          path: "restaurant",
+          select: "name address tel foodtype province postalcode picture",
+        })
+        .populate({
+          path: "user",
+          select: "name email tel",
+        });
     }
   } else {
     if (restaurantId) {
